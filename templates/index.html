@@ -1,21 +1,19 @@
-<h1>Hello World!</h1>
+{% extends 'base.html' %}
 
-<p>This is my webpage!</p>
+{% block content %}
 
-<p>My name is {{ first_name }}</p>
+    <h1>Hello!</h1>
 
-<p>{{ stuff|title }}</p>
+    <p>This is my webpage!</p>
 
-<h3>Favorite Pizza</h3>
-{% for topping in fav_pizza %}
+    <p>My name is {{ first_name }}</p>
 
-    {% if topping == 41 %}
-        {{ topping + 100 }}<br/>
-    {% else %}
-        {{ topping }}<br/>
-    {% endif %}
-    
-{% endfor %}
+    <p>{{ stuff|title }}</p>
 
-<br/><br/>
-{{ fav_pizza.0|reverse }}
+    <h3>Elements:</h3>
+    {% for item in elements %}
+        {{ item }}<br/>
+    {% endfor %}
+
+    <br/><br/>
+{% endblock %}

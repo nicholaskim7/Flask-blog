@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Vintage Watches</h1>
+    <div class="watch-container">
+        <img id="watch" src="{{ url_for('static', filename='images/lugano1.png') }}"
+            width="600" height="600">
+            <div class="description">
+                <h1>Lugano Vintage Swiss Manual Wind</h1><br/>
+            </div>
+    </div>
+
+    <div class="watch-container">
+        <img id="watch" src="{{ url_for('static', filename='images/destaultraflat.png') }}"
+            width="600" height="600">
+            <div class="description">
+                <h1>Desta Ultra Flat Vintage Manual Wind</h1><br/>
+            </div>
+    </div>
+
+    <h2>The merit of vintage watches:</h2>
+    <p>Elegant designs due to the goal of maximizing functionality and reducing size.</p>
+    <p>This leads to smaller watches that fit much nicer on the wrists and slide under the cuff.</p>
+    <p>Many of the watch companies of the past are no longer here today do to the quartz crisis.</p>
+    <p>That being said there is value on these watches as they are sought after by the watch enthusiasts</p>
+    <p>A good vintage watch is a novelty item. Its not for everyone and may not be up to todays standards in terms of technology and condition.</p>
+
+
+<h1>Quartz Watches</h1>
+    <div class="watch-container">
+        <img id="watch" src="{{ url_for('static', filename='images/lugano1.png') }}"
+            width="600" height="600">
+            <div class="description">
+                <h1>Lugano Vintage Swiss Manual Wind</h1><br/>
+            </div>
+    </div>
+
+
+{% endblock %}

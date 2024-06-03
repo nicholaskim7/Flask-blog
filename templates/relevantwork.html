@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Relevant Course work</h1>
+
+    {% for work in courseWork %}
+    --{{ work }}<br/>
+    {% endfor %}
+
+{% endblock %}

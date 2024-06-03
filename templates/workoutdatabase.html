@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="image-container">
+    <img id="image" src="{{ url_for('static', filename='images/databaseHome.png') }}"
+        width="500" height="500">
+        <div class="description">
+            <h1>Workouts Database using Sqlite3 and Tkinter</h1><br/>
+            <p>--Add New Record (Enter data)</p><br/>
+            <p>--Show All Records</p><br/>
+            <p>--Show Records By Date (Enter date: m/dd/yyyy)</p><br/>
+            <p>--Delete Record (Select unique OID)</p><br/>
+            <p>--Edit record (Select unique OID and Enter new data)</p><br/>
+            
+
+        </div>
+</div>
+
+<div class="image-container">
+    <img id="image" src="{{ url_for('static', filename='images/databaseRecords.png') }}"
+        width="600" height="500">
+        <div class="description">
+            <h2>Records Window</h2><br/>
+            <p>Scroll through database of all your workouts</p><br/>
+            <p>Select a Specific Date to see relevant records</p><br/>
+
+        </div>
+</div>
+
+<div class="image-container">
+    <img id="image" src="{{ url_for('static', filename='images/databaseupdate.png') }}"
+        width="600" height="500">
+        <div class="description">
+            <h2>Updates Window</h2><br/>
+            <p>Edit a specific record by selecting its unique OID</p><br/>
+            <p>Click Save and then Show records to reveal the query with the updates in place</p><br/>
+            <p>To delete a record simply enter the OID on the root window and press delete button and show records to see changes</p><br/>
+        </div>
+</div>
+
+<div class="image-container">
+    <img id="image" src="{{ url_for('static', filename='images/databaseprs.png') }}"
+        width="500" height="400">
+        <div class="description">
+            <h2>PRs window</h2><br/>
+            <p>Show your all time best lifts for all exercises in the database!</p><br/>
+            <p>If you enter a new record and reached a new weight it will be shown on this page</p><br/>
+        </div>
+</div>
+
+{% endblock %}

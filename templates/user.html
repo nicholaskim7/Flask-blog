@@ -1,1 +1,25 @@
-<h1>Hello {{ user_name|capitalize }}</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Hello, I am {{ user_name|title }}</h1>
+
+    <p>I am a Computer Science student at the University of Houston</p>
+    <h2>Currently Known languages:</h2>
+    {% for lang in languages %}
+        --{{ lang }}<br/>
+    {% endfor %}
+    <br/>
+    <h2>Curently Known Libraries:</h2>
+    {% for lib in libraries %}
+        --{{ lib }}<br/>
+    {% endfor %}
+    <br/>
+
+    <h2>Fields Of Intrest:</h2>
+    {% for f in fields %}
+        --{{ f }}<br/>
+    {% endfor %}
+    
+    
+{% endblock %}
