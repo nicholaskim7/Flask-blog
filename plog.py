@@ -29,7 +29,7 @@ class NamerForm(FlaskForm):
 
 def index():
     first_name = "Nicholas"
-    elements = ["About Me", "Projects", "Relevant Coursework"]
+    elements = ["About Me", "Projects", "Relevant Coursework", "Secondary Hobbies"]
     return render_template("index.html", 
         first_name = first_name,
         elements = elements)
@@ -39,7 +39,7 @@ def index():
 @app.route('/user/<name>')
 
 def user(name):
-    languages = ['Python', 'C++', 'HTML', 'CSS']
+    languages = ['Python', 'C++', 'HTML', 'CSS', 'JS']
     libraries = ['Sqlite3', 'Tkinter', 'Flask', 'Jinja2']
     fields = ['Database Systems', 'Software Engineering', 'Software developer', 'Web developer', 'Algorithms']
     return render_template("user.html", 
@@ -70,13 +70,13 @@ def letterGradeCalc():
 
 @app.route('/relevantcoursework')
 def relevantCourseWork():
-    courseWork =["Algorithms and Data structures ", "Operating Systems", "Automata and Computability", "Computer organization and Architechture", "Linear Algebra", "Discrete Math", "Statistics", ]
+    courseWork =["Algorithms and Data structures ", "Operating Systems", "Automata and Computability", "Computer organization and Architechture", "Linear Algebra", "Discrete Math", "Statistics", "Software Design"]
     return render_template("relevantwork.html",
         courseWork = courseWork)
 
 @app.route('/watch-collecting')
 def watchCollecting():
-    return render_template("watchCollection.html")
+    return render_template("watchcollection.html")
 
 @app.route('/lifting-weights')
 def liftingWeights():
