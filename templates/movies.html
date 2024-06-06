@@ -1,5 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Content not yet available still working on it</h1>
+
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{% endfor %}
+
+
+{% if name %}
+    <h1>Hello {{ name }}! Thanks for the rec!</h1>
+    <br/><br/>
+<table class ="table table-hover
+    table-bordered table-striped">
+        {% for our_movie in our_movies %}
+            <tr>
+                <td>{{ our_movie.id }}. {{ our_movie.name }} - {{ our_movie.rec }}</td>
+            </tr>
+        {% endfor %}
+</table>
+
+
+
+{% else %}
+    <h2>Add a Movie Recomendation:</h2>
+    <br/>
+    <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            {{ form.name.label(class="form-label") }}
+
+            {{ form.name(class="form-control") }}
+            <br/>
+            {{ form.rec.label(class="form-label") }}
+
+            {{ form.rec(class="form-control") }}
+            <br/>
+
+            {{ form.submit(class="btn btn-secondary") }}
+        </form>
+    </div>
+    <br/><br/><br/>
+
+    <table class ="table table-hover
+    table-bordered table-striped">
+        {% for our_movie in our_movies %}
+            <tr>
+                <td>{{ our_movie.id }}. {{ our_movie.name }} - {{ our_movie.rec }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+
 {% endblock %}

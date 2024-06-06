@@ -2,9 +2,40 @@ from flask import Flask, render_template, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
 #create a Flask instance
 app = Flask(__name__)
+#add database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///movies.db'
+
+#key
 app.config['SECRET_KEY'] = "secret key 1 2 3"
+
+#initialize database
+db = SQLAlchemy(app)
+
+#create Model
+class Movies(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    rec = db.Column(db.String(200), nullable=False, unique=True)
+    dateAdded = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Name %r' % self.name
+
+with app.app_context():
+    db.create_all()
+    
+
+#create a From class
+class MovieForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    rec = StringField("Movie Rec", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 
 #create a From class
 class NamerForm(FlaskForm):
@@ -40,7 +71,7 @@ def index():
 
 def user(name):
     languages = ['Python', 'C++', 'HTML', 'CSS', 'JS']
-    libraries = ['Sqlite3', 'Tkinter', 'Flask', 'Jinja2']
+    libraries = ['Sqlite3', 'Tkinter', 'Flask', 'Jinja2', 'Bootstrap']
     fields = ['Database Systems', 'Software Engineering', 'Software developer', 'Web developer', 'Algorithms']
     return render_template("user.html", 
         user_name=name,
@@ -82,9 +113,25 @@ def watchCollecting():
 def liftingWeights():
     return render_template("bodybuilding.html")
 
-@app.route('/movies')
+@app.route('/movies', methods=['GET', 'POST'])
 def movies():
-    return render_template("movies.html")
+    name = None
+    form = MovieForm()
+    if form.validate_on_submit():
+        mov= Movies.query.filter_by(rec = form.rec.data).first()
+        if mov is None:
+            mov = Movies(name = form.name.data, rec = form.rec.data)
+            db.session.add(mov)
+            db.session.commit()
+        name = form.name.data
+        form.name.data = ''
+        form.rec.data = ''
+        flash("Movie Recommendation added Successfully")
+    our_movies = Movies.query.order_by(Movies.dateAdded)
+    return render_template("movies.html", 
+        form = form,
+        name = name,
+        our_movies=our_movies)
 
 
 
